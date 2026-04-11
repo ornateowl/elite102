@@ -5,8 +5,8 @@
         "vscode": {
             "settings": {
                 "terminal.integrated.shell.linux": "/bin/bash",
-                "python.defaultInterpreterPath": "/workspaces/elite102/.venv/bin/python",
-                "python.venvPath": "/workspaces/elite102",
+                "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+                "python.venvPath": "${containerWorkspaceFolder}",
                 "python.terminal.executeInFileDir": true
             },
             "extensions": [
@@ -20,6 +20,6 @@
         "source=${localWorkspaceFolder}/data,target=/home/vscode/data,type=bind,consistency=cached"
     ],
     "forwardPorts": [],
-    "postCreateCommand": "apt-get update && apt-get install -y sqlite3 libsqlite3-dev && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && echo 'source /workspaces/elite102/.venv/bin/activate' >> ~/.bashrc",
+    "postCreateCommand": "apt-get update && apt-get install -y sqlite3 libsqlite3-dev && python3 -m venv .venv && . .venv/bin/activate && python -m pip install --upgrade pip && if [ -f requirements.txt ]; then pip install -r requirements.txt; fi",
     "remoteUser": "vscode"
 }
