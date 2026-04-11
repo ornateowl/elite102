@@ -5,7 +5,9 @@
         "vscode": {
             "settings": {
                 "terminal.integrated.shell.linux": "/bin/bash",
-                "python.defaultInterpreterPath": "/workspaces/elite102/.venv/bin/python"
+                "python.defaultInterpreterPath": "/workspaces/elite102/.venv/bin/python",
+                "python.venvPath": "/workspaces/elite102",
+                "python.terminal.executeInFileDir": true
             },
             "extensions": [
                 "ms-python.python",
