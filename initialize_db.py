@@ -11,7 +11,7 @@ def initialize_database():
     # Create a sample table
     print("Creating table if it does not exist...")
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS banking
+        CREATE TABLE IF NOT EXISTS bank
             (id integer primary key, 
             name text, 
             age integer, 
@@ -22,11 +22,11 @@ def initialize_database():
 
     # Insert sample data
     print("Inserting sample data...")
-    cursor.execute("SELECT COUNT(*) FROM banking")
+    cursor.execute("SELECT COUNT(*) FROM bank")
     count = cursor.fetchone()[0]
     if count == 0: # Get rid of duplicate users being added
         cursor.execute('''
-            INSERT INTO banking (name, age, balance) VALUES
+            INSERT INTO bank (name, age, balance) VALUES
             ('Harry', 20, 1989.3),
             ('Rose', 34, 12),
             ('Charlie', 45, 67.9)
@@ -34,6 +34,16 @@ def initialize_database():
     print("Sample data inserted.")
     # Commit, close connection
     print("Committing changes... closing the connection...")
+    # create a transactions table 
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS transactions ( 
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        personal_id INTEGER,
+        type TEXT,
+        amount REAL,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
     connection.commit()
     connection.close()
 
